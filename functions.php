@@ -78,11 +78,13 @@ function register_shortcodes()
 add_action("init", "register_shortcodes");
 
 require 'vendor/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-  'https://github.com/sarahbrindle/brindle-phenix/',
-  __FILE__,
-  'brindle-phenix'
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+    'https://github.com/BrindleDigital/brindle-phenix/',
+    __FILE__,
+    'brindle-phenix'
 );
 
-// Optional: Set the branch that contains the stable release.
+//Set the branch that contains the stable release.
 $myUpdateChecker->setBranch('main');
