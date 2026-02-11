@@ -7,7 +7,7 @@
  */
 
 // define a constant for the child theme version
-define( 'CHILD_THEME_VERSION', '1.2' );
+define( 'CHILD_THEME_VERSION', '1.3' );
 
 /*
 * Add custom css
@@ -82,6 +82,17 @@ function register_shortcodes()
   add_shortcode("show-menu", "show_menu_list");  
 }
 add_action("init", "register_shortcodes");
+
+add_action('wp_body_open', function() {
+	?>
+	<div class="generatepress-body-wrapper">
+	<?php
+});
+add_action('generate_after_footer', function() {
+	?>
+	</div>
+	<?php
+});
 
 require 'vendor/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
