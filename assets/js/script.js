@@ -2,33 +2,44 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-   var windowWidth = jQuery( window ).width();
-   if (windowWidth >= 768) {
-        var myHeader = document.querySelector("header"); // Change this selector as needed
-        var headroom = new Headroom(myHeader, {
-            tolerance: 5,
-            offset: 300,
-            classes: {
-                initial: "animated",
-               // pinned: "slideUp",
-              unpinned: "slideDown",
-                top: "headroom--top",
-                notTop: "headroom--not-top",
-            }
-        });
-        headroom.init();
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  // Mobile detection that works in real mobile browsers
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  // Much smaller offset for mobile
+  const offsetValue = isMobile ? 10 : 300;  
+
+  const headroom = new Headroom(header, {
+    tolerance: 5,
+    offset: offsetValue,
+    classes: {
+      initial: "animated",
+      unpinned: "slideDown",
+      top: "headroom--top",
+      notTop: "headroom--not-top",
     }
+  });
+
+  headroom.init();
 });
 
 
 //---------Menu Toggle-----------//
 
 jQuery(document).ready(function(){
-  jQuery('.slide-in-open, .slide-in-close').click(function(){
-      jQuery(this).toggleClass('open');
-      jQuery('.slide-in-menu-container').toggleClass('slide-in-menu');
-      jQuery('body').toggleClass('menu-open');
-  });
+			  jQuery('.slide-in-open, .slide-in-close').click(function(){
+				  jQuery(this).toggleClass('open');
+				  jQuery('.slide-in-menu-container').toggleClass('slide-in-menu');
+				  jQuery('body').toggleClass('menu-open');
+			  });
+			// Close menu when clicking any menu item
+			jQuery('#menu-hamburger-menu li a').on('click', function () { 
+				jQuery('.slide-in-open, .slide-in-close').removeClass('open');
+				jQuery('.slide-in-menu-container').removeClass('slide-in-menu');
+				jQuery('body').removeClass('menu-open');
+			});
 });
 
 
@@ -68,17 +79,17 @@ jQuery(document).ready(function(){
       speed: 900,
       slidesToShow: 1,
       slidesToScroll:1,
-	 autoplay: true,
-	cssEase: 'ease-in-out',
-	variableWidth: true,
-		responsive: [
-    {
-      breakpoint: 767,
-      settings: {
-        variableWidth: false,
+	    autoplay: true,
+	    cssEase: 'ease-in-out',
+	    variableWidth: true,
+		      responsive: [
+          {
+          breakpoint: 767,
+          settings: {
+             variableWidth: false,
+          }
       }
-    }
-  ]
+     ]
     });
 });
 
@@ -105,123 +116,116 @@ jQuery(document).ready(function($){
     });
 });
 
-
-/*
 document.addEventListener('DOMContentLoaded', function () {
-  new Splide('.vertical-splide', {
-    type   : 'loop',
-    drag   : 'free',
-    focus  : 'center',
-	  direction: 'ttb', 
-    perPage: 3,
-    autoScroll: {
-      speed: 1,
-    },
-  }).mount( window.splide.Extensions );
+  const splideElement = document.querySelector('.vertical-splide');
+    // Check if element exists
+    if (splideElement) {
+      const splide = new Splide(splideElement, {
+        pagination: false,
+        arrows: false,
+        type: 'loop',
+        direction: 'ttb', // vertical
+        height: 'auto',
+        gap: '15px',
+        wheel: false, // disable mouse wheel
+        drag: false,  // disable mouse drag
+        swipe: false, // disable touch swipe
+        autoScroll: {
+          speed: 0.5,
+          autoStart: true,
+          pauseOnHover: false,
+        },
+      });
+      splide.mount(window.splide.Extensions);  
+    }
+
 });
-*/
 
+    document.addEventListener('DOMContentLoaded', function () {
+      const splideElement = document.querySelector('.vertical-splide-reverse');
+      if (splideElement) {
+        const splide = new Splide(splideElement, {
+          pagination: false,
+          arrows: false,
+          type      : 'loop',
+          direction : 'ttb',
+          height    : 'auto',
+          gap: '15px',
+          wheel: false, // disable mouse wheel
+          drag: false,  // disable mouse drag
+          swipe: false, // disable touch swipe
 
- document.addEventListener('DOMContentLoaded', function () {
-    const splide = new Splide('.vertical-splide', {
-       pagination: false,
-       arrows: false,
-      type      : 'loop',
-      direction : 'ttb',
-      height    : 'auto',
-        gap: '15px',
-       // rewind: true,
-		 drag   : 'false',
-      autoScroll: {
-        //interval : 24000,       // Time between slides in ms (default: 5000)
-        speed    : 0.5,        // Transition duration
-        autoStart   : true,
-        pauseOnHover: false,
-      },
+          autoScroll: {
+          speed: -0.5,
+          autoStart   : true,
+          pauseOnHover: false,
+        },
+      });
+      splide.mount(window.splide.Extensions);   
+        }
     });
-
-    splide.mount(window.splide.Extensions);
-  });
-
-      document.addEventListener('DOMContentLoaded', function () {
-    const splide = new Splide('.vertical-splide-reverse', {
-       pagination: false,
-       arrows: false,
-      type      : 'loop',
-      direction : 'ttb',
-      height    : 'auto',
-        gap: '15px',
-		drag   : 'false',
-        //start  : 3,
-       // rewind: true,
-
-      autoScroll: {
-        speed: -0.5,
-        autoStart   : true,
-        pauseOnHover: false,
-      },
-    });
-
-    splide.mount(window.splide.Extensions);
-  });
 
 	     document.addEventListener('DOMContentLoaded', function () {
-    const splide = new Splide('.carousel-splide', {
-       pagination: false,
-       arrows: false,
-      type      : 'loop',
-     // height    : 'auto',
-        gap: '20px',
-		drag   : 'false',
-		 autoWidth: true,
-        //start  : 3,
-       // rewind: true,
-
-      autoScroll: {
-        speed    : 0.5,        // Transition duration
-        autoStart   : true,
-        pauseOnHover: false,
-      },
+        const splideElement = document.querySelector('.carousel-splide');
+        if (splideElement) {
+           const splide = new Splide(splideElement, {
+           pagination: false,
+           arrows: false,
+           type      : 'loop',
+           // height    : 'auto',
+           gap: '20px',
+		       drag   : 'false',
+		       autoWidth: true,
+           //start  : 3,
+           // rewind: true,
+           autoScroll: {
+              speed    : 0.5,        // Transition duration
+              autoStart   : true,
+              pauseOnHover: false,
+          },
 		
-	breakpoints: {
-		767: {
-			gap: '12px',
-		},
-	 },
-		
-    });
+	       breakpoints: {
+		        767: {
+			        gap: '12px',
+		        },
+	       },		
+        });
 
-    splide.mount(window.splide.Extensions);
-  });
+        splide.mount(window.splide.Extensions);
+      }
+     });
 
 
 	     document.addEventListener('DOMContentLoaded', function () {
-    const splide = new Splide('.carousel-splide-reverse', {
-       pagination: false,
-       arrows: false,
-      type      : 'loop',
-     // height    : 'auto',
-        gap: '20px',
-		drag   : 'false',
-		 autoWidth: true,
-        //start  : 3,
-       // rewind: true,
+      const splideElement = document.querySelector('.carousel-splide-reverse'); 
+       if (splideElement) {
+            const splide = new Splide(splideElement, {
+            pagination: false,
+            arrows: false,
+            type      : 'loop',
+            // height    : 'auto',
+            gap: '20px',
+		        drag   : 'false',
+		        autoWidth: true,
+            //start  : 3,
+            // rewind: true,
 
-      autoScroll: {
-		   speed: -0.5,
-        autoStart   : true,
-        pauseOnHover: false,
-      },
+            autoScroll: {
+		           speed: -0.5,
+               autoStart   : true,
+               pauseOnHover: false,
+            },
 		
 		
-		breakpoints: {
-		767: {
-			gap: '12px',
-		},
-	 },
-    });
+		        breakpoints: {
+		           767: {
+			             gap: '12px',
+		        },
+	          },
+           });
 
-    splide.mount(window.splide.Extensions);
+          splide.mount(window.splide.Extensions);
+      }
   });
 
 
@@ -231,8 +235,8 @@ jQuery(document).ready(function() {
     type: 'image',
     tLoading: 'Loading image #%curr%...',
     mainClass: 'mfp-img-mobile',
-	closeOnBgClick:false, 
-	   closeMarkup: '<button title="%title%" type="button" class="mfp-close custom-close-svg"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>',
+	  closeOnBgClick:true, 
+	  closeMarkup: '<button title="%title%" type="button" class="mfp-close custom-close-svg"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>',
     gallery: {
       enabled: true,
       navigateByImgClick: true,

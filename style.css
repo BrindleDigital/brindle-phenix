@@ -6,9 +6,9 @@
  Author URI:   https://brindledigital.com/
  GitHub Theme URI: https://github.com/sarahbrindle/brindle-phenix
  GitHub Branch:    master
- Version:      1.2
+ Version:      1.3
  Template:       generatepress
- Date:            17-08-2025
+ Date:            11-02-2026
  Requires at least: 5.0
  Tested up to: 5.7
  Requires PHP: 7.0
@@ -24,8 +24,8 @@
    General
    ========================================================================== */
 :root{
-	--header-height:;
-	--scrol-header-height:;
+	--header-height:100px;
+	--scrol-header-height:80px;
 	--pd-left: calc((100vw - var(--gb-container-width)) / 2);
     --pd-right: calc((100vw - var(--gb-container-width)) / 2);
 	 --wp-adminbar:32px;
@@ -47,7 +47,12 @@ header{
   z-index: 999;
   /*height: var(--header-height);*/
 	top:0;
+
 }
+.generatepress-body-wrapper{
+	overflow:hidden;
+}
+
 body.logged-in header {
   /*top:var(--wp-adminbar) ;*/
 }
@@ -253,7 +258,6 @@ height:100%}
   background-color: var(--light-color) !important;
   border: 0 !important;
   padding: 10px 0;
-  margin-left: ;
   display: flex;
   flex-direction: column;
   left: -1px;
@@ -265,6 +269,7 @@ height:100%}
 	min-width:200px;
 	visibility:hidden;
 	opacity:0;
+	height:auto;
 }
 
 .top-menu ul li:hover ul{
@@ -280,7 +285,7 @@ height:100%}
 	padding: .5em 1em;
 }
 
-.top-menu ul li a:hover, .top-menu ul li.current-menu-item a{
+.top-menu ul li a:hover, .top-menu ul li.current-menu-item a:hover{
 	color: var(--hover-color)!important;
 }
 .top-menu ul li.menu-item-has-children:after{
@@ -384,7 +389,7 @@ border-bottom:solid 2px transparent;
 	padding-bottom:10px;
 }
 
-.slide-in-menu-container .widget_nav_menu ul li.current-menu-item a, .slide-in-menu-container .widget_nav_menu ul li a:hover{
+.slide-in-menu-container .widget_nav_menu ul li.current-menu-item a:hover, .slide-in-menu-container .widget_nav_menu ul li a:hover{
 	border-bottom-color:var(--hover-color);
 }
 /*
@@ -706,6 +711,8 @@ img.mfp-img{
 .phenix-location-professionals-grid .location-name{
 	font-weight:700;
 	color:var(--secondary-color);
+}.phenix-location-professionals-grid .location-info{
+	display:none;
 }
 
 .phenix-location-professionals-grid .contact-info{
@@ -720,6 +727,26 @@ img.mfp-img{
 .phenix-location-professionals-grid .contact-info li a{
 	text-decoration:underline;
 	color:inherit;
+}
+.phenix-location-professionals-grid .professional-info .title {
+	color: var(--secondary-color);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+.phenix-location-professionals-grid .professional-info .services {
+    margin: 15px 0 10px;
+}
+.phenix-location-professionals-grid .professional-info .services-list .service {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    padding: 8px 16px;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    border-radius: 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1;
 }
 .phenix-location-professionals-grid .wp-block-buttons{
 	margin-top:15px;
@@ -736,8 +763,9 @@ img.mfp-img{
 	margin-top:10px;
 }
 .phenix-location-professionals-grid  .services-label{
-font-weight:700;
-text-transform: uppercase;}
+	font-weight:700;
+	text-transform: uppercase;
+}
 /* ==========================================================================
    Footer
    ========================================================================== */
@@ -797,14 +825,27 @@ text-transform: uppercase;}
 		width:25px;
 	}
 	.footer_menu ul {
-gap:20px;
-  justify-content: center;
-  flex-direction: column;
-}
+		gap:20px;
+		justify-content: center;
+		flex-direction: column;
+	}
 	.show-more-colum{
 		display:none;
 	}
 	.phenix-location-professionals-grid{
-  grid-template-columns:repeat(1, 1fr);
+	  grid-template-columns:repeat(1, 1fr);
+	}
+	.phenix-location-professionals-grid .professionals {
+		width:90%;
+		max-width: 300px;
+		margin: 0 auto;
+	}
+	
 }
+@media (max-width: 1440px){
+	.suite-info-section .inner-container {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 }
