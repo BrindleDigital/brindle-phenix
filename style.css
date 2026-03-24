@@ -4,11 +4,11 @@
  Description:  Brindle Phenix Theme
  Author:       Brindle Digital
  Author URI:   https://brindledigital.com/
- GitHub Theme URI: https://github.com/sarahbrindle/brindle-phenix
+ GitHub Theme URI: https://github.com/BrindleDigital/brindle-phenix
  GitHub Branch:    master
- Version:      1.3
+ Version:      1.4
  Template:       generatepress
- Date:            11-02-2026
+ Date:            24-03-2026
  Requires at least: 5.0
  Tested up to: 5.7
  Requires PHP: 7.0
@@ -24,7 +24,7 @@
    General
    ========================================================================== */
 :root{
-	--header-height:100px;
+	--header-height:126px;
 	--scrol-header-height:80px;
 	--pd-left: calc((100vw - var(--gb-container-width)) / 2);
     --pd-right: calc((100vw - var(--gb-container-width)) / 2);
@@ -41,11 +41,11 @@ ul {
    Header
    ========================================================================== */
 header{
-  position: relative;
+  position: fixed;
   left: 0;
   width: 100%;
   z-index: 999;
-  /*height: var(--header-height);*/
+  height: var(--header-height);
 	top:0;
 
 }
@@ -54,7 +54,7 @@ header{
 }
 
 body.logged-in header {
-  /*top:var(--wp-adminbar) ;*/
+  top:var(--wp-adminbar) ;
 }
 .headroom {
     will-change: transform;
@@ -128,34 +128,34 @@ body.logged-in header {
 
  @-webkit-keyframes slideUp {
  0% {
- -webkit-transform:translateY(0)
+ -webkit-transform:translateY(100%)
 }
  100% {
- -webkit-transform:translateY(-100%)
+ -webkit-transform:translateY(0%)
 }
 }
  @-moz-keyframes slideUp {
  0% {
- -moz-transform:translateY(0)
+ -moz-transform:translateY(100%)
 }
  100% {
- -moz-transform:translateY(-100%)
+ -moz-transform:translateY(0%)
 }
 }
  @-o-keyframes slideUp {
  0% {
- -o-transform:translateY(0)
+ -o-transform:translateY(100%)
 }
  100% {
- -o-transform:translateY(-100%)
+ -o-transform:translateY(0%)
 }
 }
  @keyframes slideUp {
  0% {
- transform:translateY(0)
+ transform:translateY(100%)
 }
  100% {
- transform:translateY(-100%)
+ transform:translateY(0%)
 }
 }
 .animated.slideUp {
@@ -230,6 +230,7 @@ body.logged-in header {
 
 body {
   overflow-x: hidden;
+	padding-top:var(--header-height);
 
 }
 .top-menu, .top-menu nav, .top-menu div{
@@ -795,6 +796,9 @@ img.mfp-img{
 }
 }
 @media (max-width: 1024.98px) {
+	:root{
+		--header-height:78px;
+	}
 	.top-menu ul{
 		gap:25px;
 }
@@ -821,6 +825,9 @@ img.mfp-img{
 }
 }
 @media (max-width: 767.98px) {
+	:root{
+		--header-height:82px;
+	}
 	.slick-prev::before, .slick-next::before{
 		width:25px;
 	}
