@@ -1,29 +1,20 @@
 //---------------Headroom---------------------//
 
-
-document.addEventListener("DOMContentLoaded", function () {
-  const header = document.querySelector("header");
-  if (!header) return;
-
-  // Mobile detection that works in real mobile browsers
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-  // Much smaller offset for mobile
-  const offsetValue = isMobile ? 10 : 300;  
-
-  const headroom = new Headroom(header, {
-    tolerance: 5,
-    offset: offsetValue,
+/*
+(function() {
+    var header = new Headroom(document.querySelector("header"), {
+           offset:0,
+    tolerance: 100,
     classes: {
       initial: "animated",
-      unpinned: "slideDown",
-      top: "headroom--top",
-      notTop: "headroom--not-top",
+      //pinned: "slideUp",
+      unpinned: "slideDown"
     }
-  });
+    });
+    header.init();
+}());*/
 
-  headroom.init();
-});
+
 
 
 //---------Menu Toggle-----------//

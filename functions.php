@@ -7,7 +7,7 @@
  */
 
 // define a constant for the child theme version
-define( 'CHILD_THEME_VERSION', '1.3' );
+define( 'CHILD_THEME_VERSION', '1.4' );
 
 /*
 * Add custom css
@@ -28,7 +28,7 @@ wp_enqueue_style("magnific-popup-style",   "https://cdnjs.cloudflare.com/ajax/li
 
 function brindle_enqueue_scripts()
 {
-    wp_enqueue_script( 'headroom-script', "https://cdnjs.cloudflare.com/ajax/libs/headroom/0.7.0/headroom.min.js",["jquery"],CHILD_THEME_VERSION,true);
+   // wp_enqueue_script( 'headroom-script', "https://cdnjs.cloudflare.com/ajax/libs/headroom/0.7.0/headroom.min.js",["jquery"],CHILD_THEME_VERSION,true);
     wp_enqueue_script( 'aos-script', "https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js",["jquery"],CHILD_THEME_VERSION,true);
     wp_enqueue_script( 'slick-script', "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js",["jquery"],CHILD_THEME_VERSION,true);  
 	wp_enqueue_script( 'splide-script', "https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/js/splide.min.js",["jquery"],CHILD_THEME_VERSION,true);
